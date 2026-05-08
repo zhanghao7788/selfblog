@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid 布局入门 - My Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="/" class="site-title">My Blog</a>
+      <div class="header-right">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="搜索文章..." autocomplete="off">
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post-full">
+  <header class="post-header">
+    <h1>CSS Grid 布局入门</h1>
+    <div class="post-meta">
+      <time datetime="2026-05-08">2026-05-08</time>
+      
+      <a href="/tags/前端.html" class="tag">#前端</a>
+      
+      <a href="/tags/CSS.html" class="tag">#CSS</a>
+      
+    </div>
+  </header>
+
+  <div class="post-body">
+    <h2>什么是 CSS Grid</h2>
+<p>CSS Grid Layout 是一个二维布局系统，可以同时控制行和列，非常适合构建复杂的页面布局。</p>
+<h2>基础用法</h2>
+<pre><code class="language-css">.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.item {
+  background: #eef;
+  padding: 1rem;
+  border-radius: 8px;
+}
+</code></pre>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;div class=&quot;item&quot;&gt;A&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;B&lt;/div&gt;
+  &lt;div class=&quot;item&quot;&gt;C&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Grid vs Flexbox</h2>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>Grid</th>
+<th>Flexbox</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>维度</td>
+<td>二维（行+列）</td>
+<td>一维（行或列）</td>
+</tr>
+<tr>
+<td>用途</td>
+<td>页面布局</td>
+<td>组件排列</td>
+</tr>
+<tr>
+<td>对齐</td>
+<td>两个方向</td>
+<td>主轴 + 交叉轴</td>
+</tr>
+</tbody></table>
+<h2>常用属性速查</h2>
+<ul>
+<li><code>grid-template-columns</code> — 定义列</li>
+<li><code>grid-template-rows</code> — 定义行</li>
+<li><code>gap</code> — 间距</li>
+<li><code>grid-area</code> — 放置元素到指定区域</li>
+</ul>
+<p>CSS Grid 和 Flexbox 配合使用可以解决几乎所有的布局问题。</p>
+
+  </div>
+</article>
+
+<nav class="post-nav">
+  <a href="/">&larr; 返回首页</a>
+</nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Powered by Markdown & Node.js</p>
+    </div>
+  </footer>
+
+  <script src="/js/search.js"></script>
+</body>
+</html>

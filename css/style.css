@@ -1,0 +1,367 @@
+/* === Reset & Base === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #fdfdfd;
+  --text: #222;
+  --text-secondary: #666;
+  --link: #0366d6;
+  --link-hover: #0050a0;
+  --border: #e5e5e5;
+  --code-bg: #f4f4f4;
+  --tag-bg: #eef5ff;
+  --tag-text: #0366d6;
+  --meta: #888;
+  --header-bg: #fff;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --radius: 8px;
+  --max-width: 720px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text);
+  background: var(--bg);
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+/* === Header === */
+.site-header {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
+.site-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.site-title:hover {
+  color: var(--link);
+}
+
+/* === Search === */
+.header-right {
+  position: relative;
+}
+
+.search-box {
+  position: relative;
+}
+
+#search-input {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  width: 200px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search-input:focus {
+  border-color: var(--link);
+  box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+}
+
+.search-results {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 360px;
+  max-height: 400px;
+  overflow-y: auto;
+  background: var(--header-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  margin-top: 0.5rem;
+  z-index: 20;
+}
+
+.search-results.active {
+  display: block;
+}
+
+.search-result-item {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover {
+  background: #f6f8fa;
+}
+
+.search-result-item .result-title {
+  font-weight: 600;
+  color: var(--link);
+}
+
+.search-result-item .result-excerpt {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 0.2rem;
+}
+
+.search-result-item .result-tags {
+  font-size: 0.8rem;
+  color: var(--meta);
+  margin-top: 0.2rem;
+}
+
+.search-no-result {
+  padding: 1rem;
+  text-align: center;
+  color: var(--meta);
+  font-size: 0.9rem;
+}
+
+/* === Main === */
+main {
+  padding: 2.5rem 0;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.empty {
+  color: var(--meta);
+  text-align: center;
+  padding: 3rem 0;
+  font-size: 1.1rem;
+}
+
+/* === Post Card === */
+.post-card {
+  padding: 1.25rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-card:last-child {
+  border-bottom: none;
+}
+
+.post-card h2 {
+  font-size: 1.35rem;
+  margin-bottom: 0.3rem;
+}
+
+.post-card h2 a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.post-card h2 a:hover {
+  color: var(--link);
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--meta);
+  margin-bottom: 0.5rem;
+}
+
+.tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  padding: 0.1rem 0.6rem;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.tag:hover {
+  background: #d6e8ff;
+}
+
+.post-excerpt {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* === Post Full === */
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-header h1 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;
+}
+
+.post-body {
+  font-size: 1.05rem;
+}
+
+.post-body h2 {
+  font-size: 1.5rem;
+  margin: 2rem 0 0.75rem;
+}
+
+.post-body h3 {
+  font-size: 1.25rem;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.post-body p {
+  margin-bottom: 1rem;
+}
+
+.post-body ul,
+.post-body ol {
+  margin: 0.5rem 0 1rem 1.5rem;
+}
+
+.post-body li {
+  margin-bottom: 0.25rem;
+}
+
+.post-body blockquote {
+  border-left: 4px solid var(--link);
+  margin: 1.5rem 0;
+  padding: 0.5rem 1rem;
+  background: #f6f8fa;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  color: #555;
+}
+
+.post-body blockquote p {
+  margin-bottom: 0;
+}
+
+.post-body a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.post-body a:hover {
+  text-decoration: underline;
+}
+
+.post-body img {
+  max-width: 100%;
+  border-radius: var(--radius);
+}
+
+.post-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
+}
+
+/* === Code Blocks === */
+.post-body code {
+  background: var(--code-bg);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-family: "Fira Code", "JetBrains Mono", "Consolas", "Monaco", monospace;
+}
+
+.post-body pre {
+  margin: 1rem 0 1.5rem;
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+.post-body pre code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* === Post Nav === */
+.post-nav {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.post-nav a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+.post-nav a:hover {
+  text-decoration: underline;
+}
+
+/* === Footer === */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0;
+  text-align: center;
+  color: var(--meta);
+  font-size: 0.9rem;
+}
+
+/* === Responsive === */
+@media (max-width: 640px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  #search-input {
+    width: 100%;
+  }
+
+  .search-results {
+    width: 100%;
+    left: 0;
+    right: auto;
+  }
+
+  .post-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .post-body {
+    font-size: 1rem;
+  }
+}
