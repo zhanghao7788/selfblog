@@ -2,11 +2,11 @@
 
 {{#posts}}
 <article class="post-card">
-  <h2><a href="/posts/{{slug}}.html">{{title}}</a></h2>
+  <h2><a href="../posts/{{slug}}.html">{{title}}</a></h2>
   <div class="post-meta">
     <time datetime="{{date}}">{{date}}</time>
     {{#tags}}
-    <a href="/tags/{{.}}.html" class="tag">#{{.}}</a>
+    <a href="../tags/{{.}}.html" class="tag">#{{.}}</a>
     {{/tags}}
   </div>
   <p class="post-excerpt">{{excerpt}}</p>
@@ -18,5 +18,5 @@
 {{/posts}}
 
 <nav class="post-nav">
-  <a href="/">&larr; 返回首页</a>
+  <a href="../">&larr; 返回首页</a>
 </nav>

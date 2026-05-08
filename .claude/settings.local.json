@@ -6,7 +6,10 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git branch *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git remote *)",
+      "WebFetch(domain:zhanghao7788.github.io)",
+      "WebFetch(domain:github.com)"
     ]
   }
 }
