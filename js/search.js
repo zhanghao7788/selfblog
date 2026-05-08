@@ -8,7 +8,7 @@
 
   async function loadIndex() {
     try {
-      const resp = await fetch('/search-index.json');
+      const resp = await fetch('search-index.json');
       index = await resp.json();
       loaded = true;
     } catch (e) {
@@ -38,7 +38,7 @@
     results.innerHTML = items
       .map(
         item => `
-        <a href="/posts/${item.slug}.html" class="search-result-item" style="text-decoration:none;display:block;">
+        <a href="posts/${item.slug}.html" class="search-result-item" style="text-decoration:none;display:block;">
           <div class="result-title">${esc(item.title)}</div>
           ${item.excerpt ? `<div class="result-excerpt">${esc(item.excerpt)}</div>` : ''}
           <div class="result-tags">${item.tags.map(t => '#' + esc(t)).join(' ')}</div>
