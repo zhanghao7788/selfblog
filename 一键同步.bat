@@ -1,12 +1,14 @@
 @echo off
 cd /d "%~dp0"
 
+REM Add Git to PATH so double-click works
+set PATH=D:\APP\Git\cmd;%PATH%
+
 echo 正在同步博客...
 echo.
 
 git add .
 
-REM 检查是否有改动需要提交
 git diff --cached --quiet
 if %errorlevel% equ 0 (
     echo 没有新的改动，直接推送...
