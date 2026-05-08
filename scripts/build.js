@@ -63,7 +63,11 @@ function render(template, data) {
       const arr = ctx[key];
       if (!arr || arr.length === 0) return '';
 
-      return arr.map(item => {
+      // If the value is a string (not an array), treat as conditional:
+      // {{#var}}...{{/var}} renders the block once with {{.}} = the string value
+      const items = Array.isArray(arr) ? arr : [arr];
+
+      return items.map(item => {
         let r = inner;
         if (typeof item !== 'object') {
           r = r.replace(/\{\{\.\}\}/g, esc(item));
@@ -104,6 +108,7 @@ function build() {
   const indexTemplate = readFile(path.join(TEMPLATES_DIR, 'index.html'));
   const postTemplate = readFile(path.join(TEMPLATES_DIR, 'post.html'));
   const tagTemplate = readFile(path.join(TEMPLATES_DIR, 'tag.html'));
+  const categoryTemplate = readFile(path.join(TEMPLATES_DIR, 'category.html'));
 
   const postFiles = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md'));
   const posts = postFiles.map(file => {
@@ -115,6 +120,7 @@ function build() {
       slug,
       title: attributes.title || slug,
       date: attributes.date ? new Date(attributes.date).toISOString().split('T')[0] : '',
+      category: attributes.category || '',
       tags: attributes.tags || [],
       excerpt: attributes.excerpt || '',
       body: htmlBody,
@@ -123,6 +129,15 @@ function build() {
 
   posts.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
 
+  // Collect categories
+  const categoryMap = {};
+  for (const post of posts) {
+    const cat = post.category || '未分类';
+    if (!categoryMap[cat]) categoryMap[cat] = [];
+    categoryMap[cat].push(post);
+  }
+
+  // Collect tags
   const tagMap = {};
   for (const post of posts) {
     for (const tag of post.tags) {
@@ -131,22 +146,43 @@ function build() {
     }
   }
 
-  // All templates get 'base' for path prefix
   const baseCtx = { base: BASE_PATH };
 
   // Index page
-  const indexHtml = render(baseTemplate, { ...baseCtx, title: 'My Blog', content: render(indexTemplate, { ...baseCtx, posts }) });
+  const indexHtml = render(baseTemplate, {
+    ...baseCtx,
+    title: 'My Blog',
+    content: render(indexTemplate, { ...baseCtx, posts, categories: Object.keys(categoryMap).sort() }),
+  });
   writeFile(path.join(OUT_DIR, 'index.html'), indexHtml);
 
   // Post pages
   for (const post of posts) {
-    const postHtml = render(baseTemplate, { ...baseCtx, title: `${post.title} - My Blog`, content: render(postTemplate, { ...baseCtx, ...post }) });
+    const postHtml = render(baseTemplate, {
+      ...baseCtx,
+      title: `${post.title} - My Blog`,
+      content: render(postTemplate, { ...baseCtx, ...post }),
+    });
     writeFile(path.join(OUT_DIR, 'posts', `${post.slug}.html`), postHtml);
+  }
+
+  // Category pages
+  for (const [cat, catPosts] of Object.entries(categoryMap)) {
+    const catHtml = render(baseTemplate, {
+      ...baseCtx,
+      title: `${cat} - My Blog`,
+      content: render(categoryTemplate, { ...baseCtx, category: cat, posts: catPosts }),
+    });
+    writeFile(path.join(OUT_DIR, 'categories', `${cat}.html`), catHtml);
   }
 
   // Tag pages
   for (const [tag, tagPosts] of Object.entries(tagMap)) {
-    const tagHtml = render(baseTemplate, { ...baseCtx, title: `#${tag} - My Blog`, content: render(tagTemplate, { ...baseCtx, tag, posts: tagPosts }) });
+    const tagHtml = render(baseTemplate, {
+      ...baseCtx,
+      title: `#${tag} - My Blog`,
+      content: render(tagTemplate, { ...baseCtx, tag, posts: tagPosts }),
+    });
     writeFile(path.join(OUT_DIR, 'tags', `${tag}.html`), tagHtml);
   }
 
@@ -155,6 +191,7 @@ function build() {
     title: p.title,
     slug: p.slug,
     date: p.date,
+    category: p.category,
     tags: p.tags,
     excerpt: p.excerpt,
   }));
@@ -163,7 +200,7 @@ function build() {
   copyDir(path.join(SRC_DIR, 'css'), path.join(OUT_DIR, 'css'));
   copyDir(path.join(SRC_DIR, 'js'), path.join(OUT_DIR, 'js'));
 
-  console.log(`Built ${posts.length} post(s), ${Object.keys(tagMap).length} tag(s).`);
+  console.log(`Built ${posts.length} post(s), ${Object.keys(categoryMap).length} categories, ${Object.keys(tagMap).length} tags.`);
   console.log('Output:', OUT_DIR);
 }
 

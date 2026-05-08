@@ -9,7 +9,10 @@
       "Bash(git push *)",
       "Bash(git remote *)",
       "WebFetch(domain:zhanghao7788.github.io)",
-      "WebFetch(domain:github.com)"
+      "WebFetch(domain:github.com)",
+      "Bash(ssh -o ConnectTimeout=5 -T git@github.com)",
+      "Bash(ls -la ~/.ssh/ 2>/dev/null || echo \"no SSH dir\")",
+      "Read(//c/Users/zh199/**)"
     ]
   }
 }
