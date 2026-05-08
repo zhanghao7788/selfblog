@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <base href="/selfblog/">
+  <title>Markdown 格式参考 - My Blog</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/github-dark.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="./" class="site-title">My Blog</a>
+      <div class="header-right">
+        <div class="search-box">
+          <input type="text" id="search-input" placeholder="搜索文章..." autocomplete="off">
+          <div id="search-results" class="search-results"></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="post-full">
+  <header class="post-header">
+    <h1>Markdown 格式参考</h1>
+    <div class="post-meta">
+      <a href="categories/随笔.html" class="category">随笔</a><span class="meta-sep">|</span>
+      <time datetime="2026-05-08">2026-05-08</time>
+      
+      <a href="tags/Markdown.html" class="tag">#Markdown</a>
+      
+      <a href="tags/参考.html" class="tag">#参考</a>
+      
+    </div>
+  </header>
+
+  <div class="post-body">
+    <h2>标题层级</h2>
+<p>文章标题用 <code>##</code> 开始（<code>#</code> 留给页面标题），最多到 <code>####</code>：</p>
+<h2>二级标题</h2>
+<h3>三级标题</h3>
+<h4>四级标题</h4>
+<h2>文字样式</h2>
+<ul>
+<li><strong>粗体文字</strong> —— <code>**文字**</code></li>
+<li><em>斜体文字</em> —— <code>*文字*</code></li>
+<li><del>删除线</del> —— <code>~~文字~~</code></li>
+<li><code>行内代码</code> —— <code>`代码`</code></li>
+</ul>
+<h2>链接与图片</h2>
+<p><a href="https://github.com">外部链接</a></p>
+<p><img src="https://picsum.photos/600/300" alt="图片替代文字"></p>
+<h2>引用</h2>
+<blockquote>
+<p>这是一段引用文字。</p>
+<p>引用可以包含多个段落。</p>
+</blockquote>
+<blockquote>
+<p>也可以嵌套：</p>
+<blockquote>
+<p>这是嵌套引用。</p>
+</blockquote>
+</blockquote>
+<h2>无序列表</h2>
+<ul>
+<li>项目一</li>
+<li>项目二<ul>
+<li>嵌套项目</li>
+<li>另一个嵌套</li>
+</ul>
+</li>
+<li>项目三</li>
+</ul>
+<h2>有序列表</h2>
+<ol>
+<li>第一步</li>
+<li>第二步<ol>
+<li>子步骤 A</li>
+<li>子步骤 B</li>
+</ol>
+</li>
+<li>第三步</li>
+</ol>
+<h2>任务列表</h2>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 已完成的任务</li>
+<li><input disabled="" type="checkbox"> 待完成的任务</li>
+<li><input disabled="" type="checkbox"> 另一个待办</li>
+</ul>
+<h2>代码块</h2>
+<h3>JavaScript</h3>
+<pre><code class="language-javascript">function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+
+greet(&#39;World&#39;);
+</code></pre>
+<h3>Python</h3>
+<pre><code class="language-python">def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b
+
+print(list(fibonacci(10)))
+</code></pre>
+<h3>Bash</h3>
+<pre><code class="language-bash"># 列出文件
+ls -la
+
+# 搜索文本
+grep -r &quot;pattern&quot; .
+
+# 压缩文件夹
+tar -czf archive.tar.gz folder/
+</code></pre>
+<h3>HTML</h3>
+<pre><code class="language-html">&lt;div class=&quot;container&quot;&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;这是一段 HTML 代码示例。&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<h3>CSS</h3>
+<pre><code class="language-css">.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+</code></pre>
+<h3>纯文本（无高亮）</h3>
+<pre><code class="language-text">这是纯文本代码块，
+不会触发语法高亮。
+</code></pre>
+<h2>表格</h2>
+<table>
+<thead>
+<tr>
+<th>属性</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td><code>string</code></td>
+<td>用户名称</td>
+</tr>
+<tr>
+<td><code>age</code></td>
+<td><code>number</code></td>
+<td>用户年龄</td>
+</tr>
+<tr>
+<td><code>active</code></td>
+<td><code>boolean</code></td>
+<td>是否激活</td>
+</tr>
+</tbody></table>
+<p>对齐方式：</p>
+<table>
+<thead>
+<tr>
+<th align="left">左对齐</th>
+<th align="center">居中</th>
+<th align="right">右对齐</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">A</td>
+<td align="center">B</td>
+<td align="right">C</td>
+</tr>
+<tr>
+<td align="left">长内容</td>
+<td align="center">中</td>
+<td align="right">1</td>
+</tr>
+</tbody></table>
+<h2>分隔线</h2>
+<p>三个或更多 <code>---</code>：</p>
+<hr>
+<h2>内联 HTML</h2>
+<p>Markdown 中可以直接写 HTML：</p>
+<details>
+<summary>点击展开详情</summary><p>这里是折叠的内容。</p>
+<ul>
+<li>可以包含列表</li>
+<li>代码块等</li>
+</ul>
+</details><p><kbd>Ctrl</kbd> + <kbd>C</kbd></p>
+<h2>实用技巧</h2>
+<ul>
+<li>段落之间空一行</li>
+<li>代码块和文字之间也空一行</li>
+<li>链接文字要有描述性，不要写&quot;点这里&quot;</li>
+<li>表格前后各空一行，保证兼容性</li>
+</ul>
+
+  </div>
+</article>
+
+<nav class="post-nav">
+  <a href="/selfblog/">&larr; 返回首页</a>
+</nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Powered by Markdown & Node.js</p>
+    </div>
+  </footer>
+
+  <script src="js/search.js"></script>
+</body>
+</html>
