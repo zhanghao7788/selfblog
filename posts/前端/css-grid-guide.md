@@ -1,7 +1,6 @@
 ---
 title: CSS Grid 布局入门
 date: 2026-05-08
-category: 前端
 tags: [CSS, 布局]
 excerpt: CSS Grid 是现代 Web 布局的利器，这篇文章带你快速上手。
 ---

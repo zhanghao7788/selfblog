@@ -1,7 +1,6 @@
 ---
 title: Vim 实用技巧
 date: 2026-05-05
-category: 工具
 tags: [Vim, 效率]
 excerpt: 记录一些常用的 Vim 操作技巧，提升编辑效率。
 ---

@@ -110,17 +110,36 @@ function build() {
   const tagTemplate = readFile(path.join(TEMPLATES_DIR, 'tag.html'));
   const categoryTemplate = readFile(path.join(TEMPLATES_DIR, 'category.html'));
 
-  const postFiles = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md'));
-  const posts = postFiles.map(file => {
-    const raw = readFile(path.join(POSTS_DIR, file));
+  // Recursively scan posts directory; folder name = category
+  function scanPosts(dir, basePath) {
+    let results = [];
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        results = results.concat(scanPosts(fullPath, path.join(basePath, entry.name)));
+      } else if (entry.name.endsWith('.md')) {
+        results.push({ filePath: fullPath, relDir: basePath });
+      }
+    }
+    return results;
+  }
+
+  const postFiles = scanPosts(POSTS_DIR, '');
+  const posts = postFiles.map(({ filePath, relDir }) => {
+    const raw = readFile(filePath);
     const { attributes, body } = fm(raw);
-    const slug = file.replace(/\.md$/, '');
+    const fileName = path.basename(filePath);
+    const slug = fileName.replace(/\.md$/, '');
     const htmlBody = marked.parse(body);
+    // Category is the first folder in the relative path, or empty if at root
+    const parts = relDir.split(path.sep).filter(Boolean);
+    const category = parts[0] || '';
     return {
       slug,
       title: attributes.title || slug,
       date: attributes.date ? new Date(attributes.date).toISOString().split('T')[0] : '',
-      category: attributes.category || '',
+      category,
       tags: attributes.tags || [],
       excerpt: attributes.excerpt || '',
       body: htmlBody,
