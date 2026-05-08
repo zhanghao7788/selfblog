@@ -5,7 +5,8 @@
   "main": "scripts/build.js",
   "scripts": {
     "build": "node scripts/build.js",
-    "dev": "node scripts/build.js && npx serve public"
+    "dev": "node scripts/build.js && npx serve public",
+    "publish": "git add . && git commit -m \"Update blog\" && git push"
   },
   "keywords": [],
   "author": "",
