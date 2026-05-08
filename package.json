@@ -1,0 +1,19 @@
+{
+  "name": "selfblog",
+  "version": "1.0.0",
+  "description": "Personal blog - static site generated from Markdown",
+  "main": "scripts/build.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "dev": "node scripts/build.js && npx serve public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "front-matter": "^4.0.2",
+    "highlight.js": "^11.11.1",
+    "marked": "^18.0.3"
+  }
+}

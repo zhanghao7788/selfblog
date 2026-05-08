@@ -1,0 +1,18 @@
+<h1 class="page-title">所有文章</h1>
+
+{{#posts}}
+<article class="post-card">
+  <h2><a href="/posts/{{slug}}.html">{{title}}</a></h2>
+  <div class="post-meta">
+    <time datetime="{{date}}">{{date}}</time>
+    {{#tags}}
+    <a href="/tags/{{.}}.html" class="tag">#{{.}}</a>
+    {{/tags}}
+  </div>
+  <p class="post-excerpt">{{excerpt}}</p>
+</article>
+{{/posts}}
+
+{{^posts}}
+<p class="empty">还没有文章。</p>
+{{/posts}}

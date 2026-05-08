@@ -1,0 +1,19 @@
+<article class="post-full">
+  <header class="post-header">
+    <h1>{{title}}</h1>
+    <div class="post-meta">
+      <time datetime="{{date}}">{{date}}</time>
+      {{#tags}}
+      <a href="/tags/{{.}}.html" class="tag">#{{.}}</a>
+      {{/tags}}
+    </div>
+  </header>
+
+  <div class="post-body">
+    {{{body}}}
+  </div>
+</article>
+
+<nav class="post-nav">
+  <a href="/">&larr; 返回首页</a>
+</nav>
