@@ -41,39 +41,11 @@
 <p>写博客有很多好处：</p>
 <ul>
 <li><strong>整理知识</strong>：把学到的东西写下来，帮助自己理解得更深</li>
-<li><strong>分享交流</strong>：与更多人交流想法，获得反馈</li>
-<li><strong>积累沉淀</strong>：长期坚持，博客会成为你最好的名片</li>
 </ul>
-<h2>技术栈</h2>
-<p>这个博客使用了以下技术：</p>
-<pre><code class="language-javascript">// 构建脚本 - 将 Markdown 编译为静态 HTML
-const marked = require(&#39;marked&#39;);
-const fm = require(&#39;front-matter&#39;);
-
-function buildPost(filePath) {
-  const content = readFile(filePath);
-  const { attributes, body } = fm(content);
-  const html = marked.parse(body);
-  return { meta: attributes, html };
-}
-</code></pre>
-<pre><code class="language-css">/* 简洁的代码块样式 */
-pre {
-  background: #1e1e2e;
-  border-radius: 8px;
-  padding: 1.5rem;
-  overflow-x: auto;
-}
-</code></pre>
-<pre><code class="language-bash"># 构建并预览博客
-npm run build
-npx serve public
-</code></pre>
 <h2>写给自己</h2>
 <blockquote>
 <p>种一棵树最好的时间是十年前，其次是现在。</p>
 </blockquote>
-<p>坚持写作，保持好奇。</p>
 
   </div>
 </article>
